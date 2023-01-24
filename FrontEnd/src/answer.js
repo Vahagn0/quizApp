@@ -6,7 +6,6 @@ function Answers({questions}){
     const [showScore,setShowScore] = useState(false)
 
     const nextAnswer = (answer) => {
-        if(i <= questions.length - 1){
             if(i === questions.length - 1){
                 setShowScore(true)
             }
@@ -14,7 +13,7 @@ function Answers({questions}){
             if(answer){
                 setScore(score + 1)
             }
-        }
+        
     }
 
     return(
