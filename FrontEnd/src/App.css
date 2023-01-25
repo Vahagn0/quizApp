@@ -9,6 +9,10 @@
     align-items: center;
     transition: 0.3s;
 }
+    
+.text{
+    font-size: 2vmin;
+}
 
 .answer:hover{
     height: 8vh;
@@ -20,10 +24,70 @@
     height: 40vh;
     width: 40vw;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUpFormChild{
+    font-size: 3vh;
+    padding-left: 2vh;
+    border: none;
+    margin: 0.5vh;
+    height: 5vh;
+    width: 25vw;
+    display: flex;
+    background-color: #b1f7a3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.signUpFormChild:hover{
+    height: 8vh;
+    background-color: #78f55f;
+}
+
+.haveAccountButton{
+    font-size: 1.5vh;
+    border: none;
+    margin: 0.5vh;
+    height: 3vh;
+    width: 15vw;
+    display: flex;
+    background-color: #b1f7a3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.haveAccountButton:hover{
+    height: 6vh;
+    background-color: #78f55f;
+}
+
+.signUpForm{
+    height: 25vh;
+    width: 40vw;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    justify-content: space-around;
 }
+
+.signInForm{
+    height: 25vh;
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .div{
     height: 99vh;
     width: 99vw;
