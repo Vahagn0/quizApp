@@ -9,6 +9,24 @@
     align-items: center;
     transition: 0.3s;
 }
+
+.button{
+    border: none;
+    margin: 0.5vh;
+    height: 3vh;
+    width: 18vw;
+    display: flex;
+    background-color: #b1f7a3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.button:hover{
+    height: 6vh;
+    background-color: #78f55f;
+}
     
 .text{
     font-size: 2vmin;

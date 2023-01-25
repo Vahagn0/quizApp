@@ -1,9 +1,11 @@
 import { useState } from "react"
+import { useNavigate} from "react-router-dom"
 
 function Answers({questions}){
     const [score,setScore] = useState(0)
     const [index,setIndex] = useState(0)
     const [showScore,setShowScore] = useState(false)
+    const navigate = useNavigate();
 
     const nextAnswer = (answer) => {
             if(index === questions.length - 1){
@@ -30,7 +32,11 @@ function Answers({questions}){
             )
             }
             <div className="numberDiv">{index + 1 + "/" + questions.length}</div>
-            </>  : <div id="scoreDiv">{"your score is " + score }</div> 
+            </>  : <>
+                <div id="scoreDiv">{"your score is " + score }</div> 
+                <button className="button" onClick={()=> window.location.reload()}> retry</button>
+                <button  className="button" onClick={()=>{navigate("/")}}>back to log in</button>
+            </>
              }
         </div> 
     )
