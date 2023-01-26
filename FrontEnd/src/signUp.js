@@ -29,7 +29,7 @@ function SignUp(){
                         })
                         .then(function(){navigate("logIn")})
                         .catch(function(res){ console.log(res) })
-
+                        redirect("logIn")
                 }
             })
     }
@@ -46,7 +46,6 @@ function SignUp(){
                 }}></input>
                 <input type="password" placeholder="password" className="signUpFormChild" required onChange={(e)=>{
                     setPassword(e.target.value)
-                    console.log(password)
                 }}></input>
                 <button className="signUpFormChild">submit</button>
             </form>

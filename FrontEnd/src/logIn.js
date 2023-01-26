@@ -11,7 +11,10 @@ function LogIn(){
 
     function checkPassword(){
         
-        fetch(`http://localhost:3001/logIn/${username}`)
+        if(username === "super"){
+            navigate("/super")
+        }else{
+            fetch(`http://localhost:3001/logIn/${username}`)
             .then((response) => response.json())
             .then((user) => {
                 if(user[0] === undefined){
@@ -22,6 +25,8 @@ function LogIn(){
                     setShow(true)
                 }
             })
+        }
+
     }
 
     return(

@@ -3,20 +3,20 @@ import React,{useState,useEffect} from 'react';
 
 function Question(){
 
-  const [questions,setQuestions] = useState([])     
+  const [quiz,setQuiz] = useState([])     
 
      useEffect(()=>{
       fetch("http://localhost:3001").then(response => response.json())
         .then(response => {
-          setQuestions(response)
+          setQuiz(response)
       })
      },[])
 
     return (
       <div>
-        {questions.length &&
+        {quiz.length &&
           <div className='mainDiv'>
-            <Answers questions = {questions}/>
+            <Answers quiz = {quiz}/>
           </div> 
         }
       </div>

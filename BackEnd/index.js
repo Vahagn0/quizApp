@@ -18,16 +18,30 @@ const userSchema = new mongoose.Schema({
     password: String
   }) 
 
+const quizSchema = new mongoose.Schema({
+    quizName: String,
+    quizBody: [{
+      question:String,
+      answer:[
+      {answerText:String,isTrue:Boolean},
+      {answerText:String,isTrue:Boolean},
+      {answerText:String,isTrue:Boolean},
+      {answerText:String,isTrue:Boolean}
+    ]}]
+})
+
+
 const Question = mongoose.model("questions",questionSchema)
 const User = mongoose.model("users",userSchema)
+const Quiz = mongoose.model("quizes",quizSchema)
 
     const app = express()
     let jsonParser = bodyParser.json()
     app.use(cors())
 
         app.get("/", async (req,res)=>{
-            const questions = await Question.find()
-            res.send(questions)
+            const quiz = await Quiz.find({quizName:"matem quiz"})
+            res.send(quiz)
         })
 
         app.post("/", jsonParser,async (req,res)=>{
@@ -36,11 +50,47 @@ const User = mongoose.model("users",userSchema)
         })
 
         app.get("/logIn/:username", async (req,res)=>{
-            const userName = req.params.username
-            const user = await User.find({username :userName})
+            const user = await User.find({username :req.params.username})
             res.send(user)
           })
 
+        app.post("/super",jsonParser,async (req,res)=>{
+          const quiz = await Quiz.find({quizName: req.body.quizName})
+          console.log(quiz)
+          if(quiz.length === 0){
+            await new Quiz({
+              quizName:req.body.quizName,
+              quizBody:[
+                {
+                  question:req.body.question,
+                  answer: [
+                    {
+                      answerText: req.body.option1,
+                      isTrue: false
+                    },
+                    {
+                      answerText: req.body.option2,
+                      isTrue: true
+                    },
+                    {
+                      answerText: req.body.option3,
+                      isTrue: false
+                    },
+                    {
+                      answerText: req.body.option4,
+                      isTrue: false
+                    },
+                  ]
+                }
+              ]
+            }).save()
+            res.send("ok")
+          }else{
+            console.log("nuynna")
+          }
+        })
+
     app.listen(process.env.PORT)
+
 
 
