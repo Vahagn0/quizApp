@@ -4,10 +4,22 @@ function Super(){
 
     const [question,setQuestion] = useState("")
     const [quizName,setQuizName] = useState("")
-    const [option1,setOption1] = useState("")
+
+    const [option1,setOption1] = useState({})
+    const [option1Correction,setOption1Correction] = useState(false)
+    const [option1Text,setOption1Text] = useState("")
+
     const [option2,setOption2] = useState('')
+    const [option2Correction,setOption2Correction] = useState(false)
+    const [option2Text,setOption2Text] = useState("")
+
     const [option3,setOption3] = useState('')
+    const [option3Correction,setOption3Correction] = useState(false)
+    const [option3Text,setOption3Text] = useState("")
+
     const [option4,setOption4] = useState('')
+    const [option4Correction,setOption4Correction] = useState(false)
+    const [option4Text,setOption4Text] = useState("")
 
     function addQuestion(){
         fetch("http://localhost:3001/super",
@@ -41,30 +53,68 @@ function Super(){
                 <input type="text" placeholder="Question" required onChange={(e)=>{
                     setQuestion(e.target.value)
                 }}></input>
-                {/* <form> */}
+                
+            {/* options */}
+            {/* 1 */}
                     <input type="text" placeholder="option1" required onChange={(e)=>{
-                        setOption1(e.target.value)
+                        setOption1Text(e.target.value)
+                        setOption1({
+                            answerText: e.target.value,
+                            isTrue: option1Correction
+                        })
                     }}></input>
-                    <input type="checkbox"></input>
-                {/* </form>
-                <form>  */}
-                    <input type="text" placeholder="option2" required onChange={(e)=>{
-                        setOption2(e.target.value)
+                    <input type="checkbox" onChange={()=>{
+                        setOption1Correction(!option1Correction)
+                        setOption1({
+                            answerText: option1Text,
+                            isTrue: option1Correction
+                        })
                     }}></input>
-                    <input type="checkbox"></input>
-                {/* </form>
-                <form> */}
-                    <input type="text" placeholder="option3" required onChange={(e)=>{
-                        setOption3(e.target.value)
+            {/* 2 */}
+                    <input type="text" placeholder="option1" required onChange={(e)=>{
+                        setOption2Text(e.target.value)
+                        setOption2({
+                            answerText: e.target.value,
+                            isTrue: option1Correction
+                        })
                     }}></input>
-                    <input type="checkbox"></input>
-                {/* </form>
-                <form> */}
-                    <input type="text" placeholder="option4" required onChange={(e)=>{
-                        setOption4(e.target.value)
+                    <input type="checkbox" onChange={()=>{
+                        setOption2Correction(!option1Correction)
+                        setOption2({
+                            answerText: option1Text,
+                            isTrue: option1Correction
+                        })
                     }}></input>
-                    <input type="checkbox"></input>
-                {/* </form> */}
+            {/* 3 */}
+                     <input type="text" placeholder="option1" required onChange={(e)=>{
+                        setOption3Text(e.target.value)
+                        setOption3({
+                            answerText: e.target.value,
+                            isTrue: option1Correction
+                        })
+                    }}></input>
+                    <input type="checkbox" onChange={()=>{
+                        setOption3Correction(!option1Correction)
+                        setOption3({
+                            answerText: option1Text,
+                            isTrue: option1Correction
+                        })
+                    }}></input>
+            {/* 4 */}
+                     <input type="text" placeholder="option1" required onChange={(e)=>{
+                        setOption4Text(e.target.value)
+                        setOption4({
+                            answerText: e.target.value,
+                            isTrue: option1Correction
+                        })
+                    }}></input>
+                    <input type="checkbox" onChange={()=>{
+                        setOption4Correction(!option1Correction)
+                        setOption4({
+                            answerText: option1Text,
+                            isTrue: option1Correction
+                        })
+                    }}></input>
                 <button>submit</button>
             </form>
         </div>

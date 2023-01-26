@@ -24,9 +24,6 @@ const quizSchema = new mongoose.Schema({
       question:String,
       answer:[
       {answerText:String,isTrue:Boolean},
-      {answerText:String,isTrue:Boolean},
-      {answerText:String,isTrue:Boolean},
-      {answerText:String,isTrue:Boolean}
     ]}]
 })
 
@@ -39,9 +36,14 @@ const Quiz = mongoose.model("quizes",quizSchema)
     let jsonParser = bodyParser.json()
     app.use(cors())
 
-        app.get("/", async (req,res)=>{
-            const quiz = await Quiz.find({quizName:"matem quiz"})
+        app.get("/quiz/:quizName", async (req,res)=>{
+            const quiz = await Quiz.find({quizName: req.params.quizName})
             res.send(quiz)
+        })
+
+        app.get("/quizes", async (req,res)=>{
+          const quizes = await Quiz.find()
+          res.send(quizes)
         })
 
         app.post("/", jsonParser,async (req,res)=>{
@@ -56,7 +58,6 @@ const Quiz = mongoose.model("quizes",quizSchema)
 
         app.post("/super",jsonParser,async (req,res)=>{
           const quiz = await Quiz.find({quizName: req.body.quizName})
-          console.log(quiz)
           if(quiz.length === 0){
             await new Quiz({
               quizName:req.body.quizName,
@@ -64,24 +65,12 @@ const Quiz = mongoose.model("quizes",quizSchema)
                 {
                   question:req.body.question,
                   answer: [
-                    {
-                      answerText: req.body.option1,
-                      isTrue: false
-                    },
-                    {
-                      answerText: req.body.option2,
-                      isTrue: true
-                    },
-                    {
-                      answerText: req.body.option3,
-                      isTrue: false
-                    },
-                    {
-                      answerText: req.body.option4,
-                      isTrue: false
-                    },
+                    req.body.option1,
+                    req.body.option2,
+                    req.body.option3,
+                    req.body.option4
                   ]
-                }
+                },
               ]
             }).save()
             res.send("ok")

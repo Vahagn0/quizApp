@@ -7,8 +7,6 @@ function Answers({quiz}){
     const [showScore,setShowScore] = useState(false)
     const navigate = useNavigate();
 
-    console.log(quiz,"quiz")
-
     const nextAnswer = (answer) => {
             if(index === quiz.length - 1){
                 setShowScore(true)
@@ -23,7 +21,7 @@ function Answers({quiz}){
     return(
         <div>
             {!showScore ? <>
-            <div className="questionDiv">{quiz[index].question}</div>
+            <div className="questionDiv">{quiz[index].quizBody[index].question}</div>
             {quiz[0].quizBody[index].answer.map(item => {
                    return(
                     <p className="answer" onClick={() => nextAnswer(item.isTrue)} key={item._id}>
