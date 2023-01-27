@@ -8,20 +8,22 @@ function Answers({quiz}){
     const navigate = useNavigate();
 
     const nextAnswer = (answer) => {
-            if(index === quiz.length - 1){
+            if(index === quiz[0].quizBody.length - 1){
                 setShowScore(true)
             }
             setIndex(index + 1)
+
             if(answer){
                 setScore(score + 1)
             }
         
     }
 
+
     return(
         <div>
             {!showScore ? <>
-            <div className="questionDiv">{quiz[index].quizBody[index].question}</div>
+            <div className="questionDiv">{quiz[0].quizBody[index].question}</div>
             {quiz[0].quizBody[index].answer.map(item => {
                    return(
                     <p className="answer" onClick={() => nextAnswer(item.isTrue)} key={item._id}>
@@ -31,7 +33,7 @@ function Answers({quiz}){
                 }
             )
             }
-            <div className="numberDiv">{index + 1 + "/" + quiz.length}</div>
+            <div className="numberDiv">{index + 1 + "/" + quiz[0].quizBody.length}</div>
             </>  : <>
                 <div id="scoreDiv">{"your score is " + score }</div> 
                 <button className="button" onClick={()=> window.location.reload()}> retry</button>

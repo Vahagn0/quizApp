@@ -5,12 +5,12 @@ function Question(){
 
   const [quiz,setQuiz] = useState([])
   const [quizes,setQuizes] = useState([]) 
-  const [quizName,setQuizName] = useState("") 
   const [show,setShow] = useState(false)
   
   function showQuiz(quizName){
   fetch(`http://localhost:3001/quiz/${quizName}`).then(response => response.json())
   .then(response => {
+    console.log(response,"resp")
     setQuiz(response)
     setShow(true)
     })

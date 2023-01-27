@@ -57,8 +57,8 @@ const Quiz = mongoose.model("quizes",quizSchema)
           })
 
           app.get("/super/:quizName", async (req,res)=>{
-            const user = await Quiz.find({quizName: req.params.quizName})
-            res.send(user)
+            const quiz = await Quiz.find({quizName: req.params.quizName})
+            res.send(quiz)
           })
 
 
@@ -79,6 +79,30 @@ const Quiz = mongoose.model("quizes",quizSchema)
             }).save()
             res.send("ok")
         })
+
+        app.patch("/super/:quizName",jsonParser,async (req,res)=>{
+          const quiz = await Quiz.find({quizName: req.params.quizName})
+          const previousData =  quiz[0].quizBody
+          const newData =  [ 
+            ... previousData,
+            {
+            question:req.body.question,
+            answer:[
+              req.body.option1,
+              req.body.option2,
+              req.body.option3,
+              req.body.option4
+            ]
+          }
+          ]
+
+          console.log(newData,"data")
+          
+          await Quiz.updateOne({quizName: req.params.quizName}, { $set: {quizBody: newData } })
+
+          res.send(newData)
+      })
+
 
     app.listen(process.env.PORT)
 

@@ -6,19 +6,19 @@ function Super(){
     const [quizName,setQuizName] = useState("")
 
     const [option1,setOption1] = useState({})
-    const [option1Correction,setOption1Correction] = useState(false)
+    const [option1Correction,setOption1Correction] = useState(true)
     const [option1Text,setOption1Text] = useState("")
 
     const [option2,setOption2] = useState('')
-    const [option2Correction,setOption2Correction] = useState(false)
+    const [option2Correction,setOption2Correction] = useState(true)
     const [option2Text,setOption2Text] = useState("")
 
     const [option3,setOption3] = useState('')
-    const [option3Correction,setOption3Correction] = useState(false)
+    const [option3Correction,setOption3Correction] = useState(true)
     const [option3Text,setOption3Text] = useState("")
 
     const [option4,setOption4] = useState('')
-    const [option4Correction,setOption4Correction] = useState(false)
+    const [option4Correction,setOption4Correction] = useState(true)
     const [option4Text,setOption4Text] = useState("")
 
     function addQuestion(){
@@ -42,10 +42,20 @@ function Super(){
                             option4: option4
                         })
                     })
-                    .then(function(){console.log("ok")})
-                    .catch(function(res){ console.log(res) })
                 }else{
-                    alert("nye nye nye")
+                    fetch(`http://localhost:3001/super/${quizName}`, {
+                        method: 'PATCH',
+                        body: JSON.stringify({
+                            question: question,
+                            option1: option1,
+                            option2: option2,
+                            option3: option3,
+                            option4: option4
+                        }),
+                        headers: {
+                            'Content-type': 'application/json; charset=UTF-8',
+                        },
+                        })
                 }
 
             })
