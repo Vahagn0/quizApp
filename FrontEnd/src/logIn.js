@@ -10,23 +10,21 @@ function LogIn(){
 
 
     function checkPassword(){
-        
-        if(username === "super"){
-            navigate("/super")
-        }else{
             fetch(`http://localhost:3001/logIn/${username}`)
             .then((response) => response.json())
             .then((user) => {
                 if(user[0] === undefined){
                     setShow(true)
                 }else if(user[0].password === password){
-                    navigate("/quiz");
+                    if(username === "super"){
+                        navigate("/super")
+                    }else{
+                        navigate("/quiz")
+                    }
                 }else{
                     setShow(true)
                 }
             })
-        }
-
     }
 
     return(

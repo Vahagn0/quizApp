@@ -22,23 +22,36 @@ function Super(){
     const [option4Text,setOption4Text] = useState("")
 
     function addQuestion(){
-        fetch("http://localhost:3001/super",
-        {
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({
-                quizName: quizName,
-                question: question,
-                option1: option1,
-                option2: option2,
-                option3: option3,
-                option4: option4
+
+        fetch(`http://localhost:3001/super/${quizName}`)
+            .then((response) => response.json())
+            .then((quiz) => {
+                if(quiz.length === 0){
+                    fetch("http://localhost:3001/super",
+                    {
+                        headers: {
+                        'Content-Type': 'application/json'
+                        },
+                        method: "POST",
+                        body: JSON.stringify({
+                            quizName: quizName,
+                            question: question,
+                            option1: option1,
+                            option2: option2,
+                            option3: option3,
+                            option4: option4
+                        })
+                    })
+                    .then(function(){console.log("ok")})
+                    .catch(function(res){ console.log(res) })
+                }else{
+                    alert("nye nye nye")
+                }
+
             })
-        })
-        .then(function(){console.log("ok")})
-        .catch(function(res){ console.log(res) })
+
+
+
     }
 
     return(
@@ -75,14 +88,14 @@ function Super(){
                         setOption2Text(e.target.value)
                         setOption2({
                             answerText: e.target.value,
-                            isTrue: option1Correction
+                            isTrue: option2Correction
                         })
                     }}></input>
                     <input type="checkbox" onChange={()=>{
                         setOption2Correction(!option1Correction)
                         setOption2({
-                            answerText: option1Text,
-                            isTrue: option1Correction
+                            answerText: option2Text,
+                            isTrue: option2Correction
                         })
                     }}></input>
             {/* 3 */}
@@ -90,14 +103,14 @@ function Super(){
                         setOption3Text(e.target.value)
                         setOption3({
                             answerText: e.target.value,
-                            isTrue: option1Correction
+                            isTrue: option3Correction
                         })
                     }}></input>
                     <input type="checkbox" onChange={()=>{
                         setOption3Correction(!option1Correction)
                         setOption3({
-                            answerText: option1Text,
-                            isTrue: option1Correction
+                            answerText: option3Text,
+                            isTrue: option3Correction
                         })
                     }}></input>
             {/* 4 */}
@@ -105,14 +118,14 @@ function Super(){
                         setOption4Text(e.target.value)
                         setOption4({
                             answerText: e.target.value,
-                            isTrue: option1Correction
+                            isTrue: option4Correction
                         })
                     }}></input>
                     <input type="checkbox" onChange={()=>{
                         setOption4Correction(!option1Correction)
                         setOption4({
-                            answerText: option1Text,
-                            isTrue: option1Correction
+                            answerText: option4Text,
+                            isTrue: option4Correction
                         })
                     }}></input>
                 <button>submit</button>

@@ -12,7 +12,6 @@ function SignUp(){
         fetch(`http://localhost:3001/logIn/${username}`)
             .then((response) => response.json())
             .then((user) => {
-                console.log(user,"userrr")
                 if(user.length > 0){
                     setShow(true)
                 }else{

@@ -56,9 +56,13 @@ const Quiz = mongoose.model("quizes",quizSchema)
             res.send(user)
           })
 
+          app.get("/super/:quizName", async (req,res)=>{
+            const user = await Quiz.find({quizName: req.params.quizName})
+            res.send(user)
+          })
+
+
         app.post("/super",jsonParser,async (req,res)=>{
-          const quiz = await Quiz.find({quizName: req.body.quizName})
-          if(quiz.length === 0){
             await new Quiz({
               quizName:req.body.quizName,
               quizBody:[
@@ -74,9 +78,6 @@ const Quiz = mongoose.model("quizes",quizSchema)
               ]
             }).save()
             res.send("ok")
-          }else{
-            console.log("nuynna")
-          }
         })
 
     app.listen(process.env.PORT)
