@@ -6,7 +6,7 @@ function Answers({quiz}){
     const [index,setIndex] = useState(0)
     const [showScore,setShowScore] = useState(false)
     const navigate = useNavigate();
-
+    console.log('log')
     const nextAnswer = (answer) => {
             if(index === quiz[0].quizBody.length - 1){
                 setShowScore(true)
