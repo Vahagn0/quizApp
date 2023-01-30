@@ -31,6 +31,7 @@ const quizSchema = new mongoose.Schema({
 const Question = mongoose.model("questions",questionSchema)
 const User = mongoose.model("users",userSchema)
 const Quiz = mongoose.model("quizes",quizSchema)
+console.log('logged')
 
     const app = express()
     let jsonParser = bodyParser.json()
