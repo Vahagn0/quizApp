@@ -5,24 +5,24 @@ function Option({setOption}){
     
     const [optionCorrection,setOptionCorrection] = useState(false)
     const [optionText,setOptionText] = useState("")
+    function handleClick(){
+        setOption({
+            answerText: optionText,
+            isTrue: optionCorrection
+        })
+    }   
 
 
     return(
     <div>
         <input type="text" placeholder="option" required onChange={(e)=>{
             setOptionText(e.target.value)
-            setOption({
-                answerText: e.target.value,
-                isTrue: optionCorrection
-            })
+            handleClick()
          }}></input>
          <input type="checkbox" onChange={(e)=>{
             setOptionCorrection(!optionCorrection)
-            setOption({
-                answerText: optionText,
-                isTrue: optionCorrection
-            })
-         }}></input>
+            handleClick()
+        }}></input>
     </div>
     )
    

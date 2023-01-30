@@ -6,7 +6,7 @@ function Super(){
     const [question,setQuestion] = useState("")
     const [quizName,setQuizName] = useState("")
 
-    const [option1,setOption1] = useState({})
+    const [option1,setOption1] = useState("")
     const [option2,setOption2] = useState('')
     const [option3,setOption3] = useState('')
     const [option4,setOption4] = useState('')
