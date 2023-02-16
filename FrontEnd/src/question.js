@@ -24,7 +24,6 @@ function Question(){
      },[])
      
      
-
     return (
       <div>
           {!show &&

@@ -3,6 +3,7 @@ import cors from 'cors'
 import mongoose from "mongoose"
 import * as dotenv from 'dotenv'
 import bodyParser from "body-parser"
+import bcrypt from "bcrypt"
 
 dotenv.config()
 
@@ -48,13 +49,26 @@ console.log('logged')
         })
 
         app.post("/", jsonParser,async (req,res)=>{
-            await new User({username: req.body.username,password: req.body.password}).save()
+            const hashedPassword = await bcrypt.hash(req.body.password,10)
+            await new User({username: req.body.username,password: hashedPassword}).save()
             res.send("ok")
         })
 
-        app.get("/logIn/:username", async (req,res)=>{
+        app.get("/:username/", async (req,res)=>{
+          const user = await User.find({username :req.params.username})
+          res.send(user)
+        })
+
+        app.get("/logIn/:username/:password", async (req,res)=>{
             const user = await User.find({username :req.params.username})
-            res.send(user)
+            const hash = user[0].password
+            console.log(user[0],"hash")
+            const match = await bcrypt.compare(req.params.password, hash)
+            if(match){
+              res.send(true)
+            }else{
+              res.send(false)
+            }
           })
 
           app.get("/super/:quizName", async (req,res)=>{

@@ -9,7 +9,7 @@ function SignUp(){
     const navigate = useNavigate()
 
     function createUser(){
-        fetch(`http://localhost:3001/logIn/${username}`)
+        fetch(`http://localhost:3001/${username}`)
             .then((response) => response.json())
             .then((user) => {
                 if(user.length > 0){
