@@ -8,7 +8,7 @@ function Question(){
   const [show,setShow] = useState(false)
   
   function showQuiz(quizName){
-  fetch(`http://localhost:3001/quiz/${quizName}`).then(response => response.json())
+  fetch(`http://localhost:8080/quiz/${quizName}`).then(response => response.json())
   .then(response => {
     console.log(response,"resp")
     setQuiz(response)
@@ -17,7 +17,7 @@ function Question(){
   }
 
      useEffect(()=>{
-      fetch("http://localhost:3001/quizes").then(response => response.json())
+      fetch("http://localhost:8080/quizes").then(response => response.json())
         .then(response => {
           setQuizes(response)
           })

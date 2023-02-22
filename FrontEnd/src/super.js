@@ -14,7 +14,8 @@ function Super(){
     const formik = useFormik({
         initialValues:{
             quizName: "",
-            question:[],
+            question:"",
+            options:[]
         }
     })
 
@@ -23,6 +24,7 @@ function Super(){
             <form onSubmit={(e)=>{
                     e.preventDefault()
                     addQuestion(formik)
+                    console.log(answer.values)
                 }}>
                 <input 
                 type="text"
@@ -40,7 +42,9 @@ function Super(){
                 onChange={formik.handleChange}
                 value={formik.values.question}
                 />
-                 <Option answer={answer} />
+                 <Option answer={answer}
+                 onChange={formik.handleChange}
+                 />
                 <button>submit</button>
             </form>
         </div>

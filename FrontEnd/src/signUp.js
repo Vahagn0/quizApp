@@ -9,13 +9,13 @@ function SignUp(){
     const navigate = useNavigate()
 
     function createUser(){
-        fetch(`http://localhost:3001/${username}`)
+        fetch(`http://localhost:8080/${username}`)
             .then((response) => response.json())
             .then((user) => {
                 if(user.length > 0){
                     setShow(true)
                 }else{
-                    fetch("http://localhost:3001/",
+                    fetch("http://localhost:8080/",
                         {
                             headers: {
                             'Content-Type': 'application/json'

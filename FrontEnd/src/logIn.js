@@ -10,7 +10,7 @@ function LogIn(){
 
 
     function checkPassword(){
-            fetch(`http://localhost:3001/logIn/${username}/${password}`)
+            fetch(`http://localhost:8080/logIn/${username}/${password}`)
             .then((response) => response.json())
             .then((user) => {
                 if(user === false){

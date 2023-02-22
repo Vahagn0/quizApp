@@ -1,10 +1,12 @@
 export function addQuestion(formik){
 
-    fetch(`http://localhost:3001/super/${formik.values.quizName}`)
+    console.log(formik.values)
+
+    fetch(`http://localhost:8080/super/${formik.values.quizName}`)
         .then((response) => response.json())
         .then((quiz) => {
             if(quiz.length === 0){
-                fetch("http://localhost:3001/super",
+                fetch("http://localhost:8080/super",
                 {
                     headers: {
                     'Content-Type': 'application/json'
@@ -16,7 +18,7 @@ export function addQuestion(formik){
                     })
                 })
             }else{
-                fetch(`http://localhost:3001/super/${formik.values.quizName}`, {
+                fetch(`http://localhost:8080/super/${formik.values.quizName}`, {
                     method: 'PATCH',
                     body: JSON.stringify({
                         question: formik.values.question,

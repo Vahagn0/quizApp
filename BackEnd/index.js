@@ -48,28 +48,27 @@ console.log('logged')
           res.send(quizes)
         })
 
-        app.post("/", jsonParser,async (req,res)=>{
-            const hashedPassword = await bcrypt.hash(req.body.password,10)
-            await new User({username: req.body.username,password: hashedPassword}).save()
-            res.send("ok")
-        })
+        // app.post("/", jsonParser,async (req,res)=>{
+        //     const hashedPassword = await bcrypt.hash(req.body.password,10)
+        //     await new User({username: req.body.username,password: hashedPassword}).save()
+        //     res.send("ok")
+        // })
 
-        app.get("/:username/", async (req,res)=>{
-          const user = await User.find({username :req.params.username})
-          res.send(user)
-        })
+        // app.get("/:username/", async (req,res)=>{
+        //   const user = await User.find({username :req.params.username})
+        //   res.send(user)
+        // })
 
-        app.get("/logIn/:username/:password", async (req,res)=>{
-            const user = await User.find({username :req.params.username})
-            const hash = user[0].password
-            console.log(user[0],"hash")
-            const match = await bcrypt.compare(req.params.password, hash)
-            if(match){
-              res.send(true)
-            }else{
-              res.send(false)
-            }
-          })
+        // app.get("/logIn/:username/:password", async (req,res)=>{
+        //     const user = await User.find({username :req.params.username})
+        //     const hash = user[0].password
+        //     const match = await bcrypt.compare(req.params.password, hash)
+        //     if(match){
+        //       res.send(true)
+        //     }else{
+        //       res.send(false)
+        //     }
+        //   })
 
           app.get("/super/:quizName", async (req,res)=>{
             const quiz = await Quiz.find({quizName: req.params.quizName})
@@ -110,8 +109,6 @@ console.log('logged')
             ]
           }
           ]
-
-          console.log(newData,"data")
           
           await Quiz.updateOne({quizName: req.params.quizName}, { $set: {quizBody: newData } })
 
