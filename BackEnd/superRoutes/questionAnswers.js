@@ -27,7 +27,8 @@ console.log(req.body.options)
     quizBody:[
       {
         question:req.body.question,
-        answer: req.body.options
+        answer: req.body.options,
+        type: req.body.type
       },
     ]
   }).save()
@@ -41,7 +42,8 @@ const newData =  [
   ... previousData,
   {
   question:req.body.question,
-  answer: req.body.options
+  answer: req.body.options,
+  type: req.body.type
 }
 ]
 

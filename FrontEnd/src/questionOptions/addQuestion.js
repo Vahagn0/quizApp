@@ -13,7 +13,8 @@ export function addQuestionOptions(formik){
                     body: JSON.stringify({
                         quizName: formik.values.quizName,
                         question: formik.values.question,
-                        options: formik.values.options
+                        options: formik.values.options,
+                        type: "questionOptions"
                     })
                 })
             }else{
@@ -21,7 +22,8 @@ export function addQuestionOptions(formik){
                     method: 'PATCH',
                     body: JSON.stringify({
                         question: formik.values.question,
-                        options: formik.values.options
+                        options: formik.values.options,
+                        type: "questionOptions"
                     }),
                     headers: {
                         'Content-type': 'application/json; charset=UTF-8',
