@@ -1,18 +1,14 @@
 import './App.css';
-import Question from './question';
-import SignUp from './signUp';
+import Question from './questionOptions/question';
 import Super from './super';
 import {Route,Routes} from 'react-router-dom'
-import LogIn from './logIn';
 
 function App() {
 
   return (
     <div className='div'>
       <Routes>
-        <Route path='/quiz' element={<Question />} />
-        <Route path='/' element={<SignUp />} />
-        <Route path="/logIn" element={<LogIn />} />
+        <Route path='/' element={<Question />} />
         <Route path="/super" element={<Super />} />
       </Routes>
     </div>

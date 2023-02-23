@@ -1,54 +1,25 @@
-import Option from "./option"
-import { useFormik } from "formik"
-import { addQuestion } from "./addQuestion"
+import { useState } from "react"
+import QuestionOptions from "./questionOptions/questionOptions"
 
 function Super(){
 
-    const answer = useFormik({
-        initialValues: {
-            answerText: "",
-            isTrue: false
-        }
-    })
-
-    const formik = useFormik({
-        initialValues:{
-            quizName: "",
-            question:"",
-            options:[]
-        }
-    })
+    const [hideButtons,setHideButtons] = useState(true)
+    const [questionOptions,setQuestionOptions] = useState(false)
 
     return(
         <div>
-            <form onSubmit={(e)=>{
-                    e.preventDefault()
-                    addQuestion(formik)
-                    console.log(answer.values)
-                }}>
-                <input 
-                type="text"
-                placeholder="quiz name" 
-                name="quizName"
-                required
-                onChange={formik.handleChange}
-                value={formik.values.quizName}
-                />
-                <input 
-                type="text"
-                placeholder="question" 
-                name="question"
-                required
-                onChange={formik.handleChange}
-                value={formik.values.question}
-                />
-                 <Option answer={answer}
-                 onChange={formik.handleChange}
-                 />
-                <button>submit</button>
-            </form>
+            {hideButtons && 
+                <button onClick={()=> {
+                    setHideButtons(!hideButtons)
+                    setQuestionOptions(!questionOptions)
+                }}>question with options</button> 
+            }
+            {questionOptions &&
+                <QuestionOptions />
+            }
         </div>
     )
 }
 
 export default Super
+
