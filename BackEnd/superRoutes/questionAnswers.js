@@ -9,11 +9,7 @@ let jsonParser = bodyParser.json()
 
 const questionAnswersSchema = new mongoose.Schema({
     quizName: String,
-    quizBody: [{
-      question:String,
-      answer:[
-      {answerText:String,isTrue:Boolean},
-    ]}]
+    quizBody: []
 })
 
 export const QuestionAnswerQuiz = mongoose.model("quizes",questionAnswersSchema)

@@ -4,7 +4,7 @@ export function addQuestionOptions(formik){
         .then((response) => response.json())
         .then((quiz) => {
             if(quiz.length === 0){
-                fetch("http://localhost:8080",
+                fetch("http://localhost:8080/super",
                 {
                     headers: {
                     'Content-Type': 'application/json'
